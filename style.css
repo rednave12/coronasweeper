@@ -1,0 +1,172 @@
+html {
+	min-width: 400px;
+	min-height: 400px;
+}
+
+.bg-image {
+	width: 100%;
+	height: 100%;
+	background: url(assets/background.png) no-repeat center fixed;
+	background-size: cover;
+	background-color: #7DCEA0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	display: block;
+	/* filter: blur(2.5px); */
+}
+
+#bg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: fixed;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	text-align:center;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	/* background: #7DCEA0; */
+}
+
+canvas {
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	top: 52%;
+	transform: translate(-50%, -50%);
+	height: 400px;
+	width: auto;
+	overflow: scroll;
+	z-index: -1;
+}
+
+#header {
+	position: fixed;
+	width: 100%;
+	height: 5%;
+	min-height: 50px;
+	max-height: 7%;
+	background: url(assets/bg1.png) no-repeat left center;
+	background-size: contain;
+	background-color: #ffffff;
+	background-origin: content-box;
+	top: 0;
+	padding: 1%;
+}
+
+#footer {
+	position: fixed;
+	width: 100%;
+	height: 7%;
+	min-height: 50px;
+	max-height: 7%;
+	background-color: #757575;
+	bottom: 0;
+	font-family: pressStart;
+	font-size: 0.75vw;
+	text-align: right;
+	line-height: 50px;
+	color: white;
+}
+
+.slidecontainer {
+  width: 25%;
+  margin-top: 1.5%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%;
+  height: 10px; 
+  background: #d3d3d3; 
+  outline: none;
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; 
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: url(assets/Virus2.png) center center;
+  background-size: cover;
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 100%;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+button {
+	margin: 10px;
+	width: auto;
+	padding: 1%;
+	border: 0;
+	border-radius: 3%;
+	background: #7DCEA0;
+	font-family: pressStart;
+	font-size: 1vw;
+	font-weight: bold;
+	text-align: center;
+}
+
+.button.reset {
+	background: #DC7633;
+}
+
+button:hover {
+	opacity: 75%;
+}
+
+.nav {
+	float: right;
+	width: 65%;
+	margin-right: 1.5%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+@font-face {
+font-family: "pressStart";
+src: url(assets/PressStart2P-Regular.ttf);
+}
+
+p {
+	line-height: 20%;
+	padding-top: 15px;
+	padding-right: 25px;
+}
+
+.slider:disabled {
+	cursor: not-allowed;
+}
