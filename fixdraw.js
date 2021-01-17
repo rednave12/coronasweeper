@@ -36,6 +36,7 @@ var canvW = cellW * cols;
 var gameW = canvW;
 var topBarW = canvW;
 
+
 let virus, vaccine;
 let up, down, left, right;
 let topright, topleft, bottomright, bottomleft;
@@ -167,6 +168,7 @@ function mousePressed() {
 function checkWin() {
 	if (minesFound == mineCount) {
 		gameState = 1;
+		overlayWin();
 	}
 }
 
@@ -191,6 +193,10 @@ function gameOver() {
 		textAlign(CENTER);
 		text('PRESS ENTER TO PLAY AGAIN', gameW/2, gameH/2);
 		textSize(12);
+		
+		if (gameState == -1) {
+			overlayGameOver();
+		}
 	}
 }
 
@@ -201,7 +207,6 @@ function keyPressed() {
 		reset();
 		setup();
 		draw();
-		bgReset();
 	}
 }
 
@@ -219,6 +224,9 @@ function reset() {
 	topBarW = canvW;
 	drawCount = 0;
 	toDraw = [];
+	bgReset();
+	
+	setupOverlay(canvW, canvH);
 }
 
 function draw() {

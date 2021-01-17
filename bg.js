@@ -86,6 +86,22 @@ Particle.prototype.update = function() {
 			this.xv = -this.xv;
 		}
 		
+		
+		//loss
+		if (gameState == -1) {
+			
+			if (this.x > c.width/2) {
+				this.xv = this.x - ((c.width/2) + width/2);
+			} else {
+				this.xv = this.x - ((c.width/2) - (width/2) - 30);
+			}
+			
+			this.xv = -this.xv / 20;
+			
+			if (this.y + 20 >= c.height - 90 || this.y - 20 <= 50) {
+				this.yv = -this.yv;
+			}
+		}		
 		//POSITION UPDATED BY VELOCITY
 		this.x += this.xv;
 		this.y += this.yv;

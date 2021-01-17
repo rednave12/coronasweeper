@@ -28,6 +28,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	text-align:center;
+	background-color: #000000;
 }
 
 body {
@@ -53,10 +54,24 @@ canvas {
 	z-index: -1;
 }
 
+#overlay {
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	top: 52%;
+	transform: translate(-50%, -50%);
+	width: 440px;
+	height: 475px;
+	z-index: 1;
+	background-color: #7DCEA0;
+	opacity: 0%;
+	padding: 0;
+}
+
 #bg {
 	display: inline-block;
 	position: absolute;
-	width: auto;
+	width: 100%;
 	height: auto;
 	padding: 0;
 	margin: 0;
