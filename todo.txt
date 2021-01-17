@@ -1,0 +1,9 @@
+TO DO LIST:
+
+- implement win/loss animations in to the background
+- add instruction tab to side of page
+- better labels for buttons / add label to slider - hover labels?
+- stop nav bar from overlapping with logo when window is resized, could we add logo to flexbox?
+- FEWER GLOBALS.
+- get rid of both scrollbars.
+- get rid of press enter to play again - just have new game button.
