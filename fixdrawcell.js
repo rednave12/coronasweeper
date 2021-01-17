@@ -1,6 +1,4 @@
- var sf = 8/32;
- 
- function Cell(i, j) {
+function Cell(i, j) {
 	this.i = i;
 	this.j = j;
 	this.x = i * cellW;
@@ -19,7 +17,8 @@
 
  Cell.prototype.show = function() {
 	textFont(font);
-	 
+	var scale = (cellW - 1) / 31;
+	
 	//things to only do the first time
 	//draw basic grid
 	if (drawCount == 0) {
@@ -28,8 +27,8 @@
 		rect(this.x+0.5, this.y+0.5, cellW-1);
 		
 		//draw grid lines once
+		stroke(0);
 		for (var i = 0; i < cols; i++) {
-			stroke(0);
 			line(this.x, this.y, this.x, this.y+gameH);
 		}
 		line(gameW, topBarH, gameW, canvH);
@@ -43,6 +42,9 @@
 		//things to do if in toDraw array
 		 if (this.revealed) {
 			if (this.mine) {
+				fill(94);
+				noStroke();
+				rect(this.x + 0.5, this.y + 0.5, cellW -1);
 				image(virus, this.x + 3, this.y + 3, cellW * 0.8, cellW * 0.8)
 			} else {
 				textAlign(CENTER);
@@ -55,51 +57,32 @@
 					
 					//fill in green region
 					fill(81, 255, 153);
-					rect(this.x, this.y, cellW);
+					noStroke();
+					rect(this.x + 0.5, this.y + 0.5, cellW - 1);
 					
 					//draw edge pieces - outsource this to its own function too?
 					if (this.edgeState[0] == 1) {
-						//text('U', this.x+ cellW/2, this.y+12);
-						image(up, this.x + 0.5 , this.y + 0.5, 31 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-						//noStroke();
-						//fill(255, 0, 0);
-						//rect(this.x + 0.5, this.y + 0.5, cellW-1, 8);
-						//stroke(0);
+						image(up, this.x + 0.5 , this.y + 0.5, 31 * scale, 8 * scale);
 					}
 					if (this.edgeState[1] == 1) {
-						//text('R', this.x + cellW - 5, this.y + cellW/2);
-						//image(right, (this.x+cellW-cellW*sf) - 0.5, this.y, cellW*sf, cellW);
-						image(right, this.x + cellW - (8 * ((cellW-1)/31)) - 0.5, this.y + 0.5, 8 * ((cellW-1)/31), 31 * ((cellW-1)/31));
-						noStroke();
-						fill(255, 0, 0);
-						//rect(this.x + cellW - 8 - 0.5, this.y + 0.5, 8, cellW-1);
-						stroke(0);
+						image(right, this.x + cellW - (8 * scale) - 0.5, this.y + 0.5, 8 * scale, 31 * scale);
 					}
 					if (this.edgeState[2] == 1) {
-						//text('D', this.x + cellW/2, this.y + cellW);
-						//image(down, this.x, (this.y+cellW-cellW*sf) - 0.5, cellW, cellW*sf);
-						image(down, this.x + 0.5 , this.y + cellW - (8 * ((cellW-1)/31)) - 0.5, 31 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-						noStroke();
-						fill(255, 0, 0);
-						//rect(this.x + 0.5, this.y + cellW - 8 - 0.5, cellW-1, 8);
-						stroke(0);
+						image(down, this.x + 0.5 , this.y + cellW - (8 * scale) - 0.5, 31 * scale, 8 * scale);
 					}
 					if (this.edgeState[3] == 1) {
-						//text('L', this.x + 5, this.y + cellW / 2);
-						//image(left, this.x + 0.5, this.y, cellW*sf, cellW);
-						image(left, this.x + 0.5, this.y + 0.5, 8 * ((cellW-1)/31), 31 * ((cellW-1)/31));
-						noStroke();
-						fill(255, 0, 0);
-						//rect(this.x + 0.5, this.y + 0.5, 8, cellW-1);
-						stroke(0);
+						image(left, this.x + 0.5, this.y + 0.5, 8 * scale, 31 * scale);
 					}
 					
 					//draw corners
-					grid[this.i][this.j].drawCorners();
+					grid[this.i][this.j].drawCorners(scale);
 					
 					
 				//if we have adjacent mines, display how many
 				} else {
+					fill(94);
+					noStroke();
+					rect(this.x+0.5, this.y+0.5, cellW-1);
 					fill(255);
 					text(this.adjacentMines, this.x + cellW / 2, this.y + cellW / 2 + 5);
 				}	
@@ -110,18 +93,6 @@
 			image(vaccine, this.x + 3, this.y + 3, cellW * 0.8, cellW * 0.8);
 		}
 	}
-	
-	//drawing grid lines!
-	// for (var i = 0; i < cols; i++) {
-		// stroke(0);
-		// line(this.x, this.y, this.x, this.y+gameH);
-	// }
-	// line(gameW, topBarH, gameW, canvH);
-   
-	// for (var j = 0; j < rows; j++) {
-		// line(this.x, this.y+cellW, this.x+gameW, this.y+cellW);
-	// }
-	
  }
  
  Cell.prototype.unflag = function() {
@@ -264,89 +235,25 @@ Cell.prototype.findIntCorners = function() {
 	}
 }
 
- Cell.prototype.drawCorners = function() {
+ Cell.prototype.drawCorners = function(scale) {
 	if (this.cornerType[0] == 1) {
-		fill(0);
-		//text('TL', this.x, this.y);
-		image(topleft, this.x+0.5, this.y+0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(0, 0, 255);
-		// rect(this.x + 0.5, this.y + 0.5, 8, 8);
-		// stroke(0);
-		
+		image(topleft, this.x+0.5, this.y+0.5, 8 * scale, 8 * scale);
 	} else if (this.cornerType[0] == -1) {
-		fill(255);
-		//text('TL', this.x, this.y);
-		image(inttl, this.x + 0.5, this.y + 0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(255, 158, 19);
-		// rect(this.x + 0.5, this.y + 0.5, 8, 8);
-		// stroke(0);
-		
+		image(inttl, this.x + 0.5, this.y + 0.5, 8 * scale, 8 * scale);
 	}
 	if (this.cornerType[1] == 1) {
-		fill(0);
-		//text('TR', this.x + cellW, this.y);
-		image(topright, this.x + cellW - 8 * ((cellW-1)/31) - 0.5, this.y + 0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(0, 0, 255);
-		// rect(this.x + cellW - 8 - 0.5, this.y + 0.5, 8, 8);
-		// stroke(0);
-		
+		image(topright, this.x + cellW - 8 * scale - 0.5, this.y + 0.5, 8 * scale, 8 * scale);
 	} else if (this.cornerType[1] == -1) {
-		fill(255);
-		//text('TR', this.x + cellW, this.y);
-		image(inttr, this.x + cellW - 8 * ((cellW-1)/31) - 0.5, this.y + 0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(255, 158, 19);
-		// rect(this.x + cellW - 8 - 0.5, this.y + 0.5, 8, 8);
-		// stroke(0);
-		
+		image(inttr, this.x + cellW - 8 * scale - 0.5, this.y + 0.5, 8 * scale, 8 * scale);
 	}
 	if (this.cornerType[2] == 1) {
-		fill(0);
-		//text('BR', this.x + cellW, this.y + cellW);
-		image(bottomright, this.x + cellW - 8 * ((cellW-1)/31) - 0.5, this.y + cellW - 8 * ((cellW-1)/31) - 0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(0, 0, 255);
-		// rect(this.x + cellW - 8 - 0.5, this.y + cellW - 8 - 0.5, 8, 8);
-		// stroke(0);
-		
+		image(bottomright, this.x + cellW - 8 * scale - 0.5, this.y + cellW - 8 * scale - 0.5, 8 * scale, 8 * scale);
 	} else if (this.cornerType[2] == -1) {
-		fill(255);
-		//text('BR', this.x + cellW, this.y + cellW);
-		image(intbr, this.x + cellW - 8 * ((cellW-1)/31) - 0.5, this.y + cellW - 8 * ((cellW-1)/31) - 0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(255, 158, 19);
-		// rect(this.x + cellW - 8 - 0.5, this.y + cellW - 8 - 0.5, 8, 8);
-		// stroke(0);
-		
+		image(intbr, this.x + cellW - 8 * scale - 0.5, this.y + cellW - 8 * scale - 0.5, 8 * scale, 8 * scale);
 	}
 	if (this.cornerType[3] == 1) {
-		fill(0);
-		//text('BL', this.x, this.y + cellW);
-		image(bottomleft, this.x + 0.5, this.y + cellW - 8 * ((cellW-1)/31) - 0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(0, 0, 255);
-		// rect(this.x + 0.5, this.y + cellW - 8 - 0.5, 8, 8);
-		// stroke(0);
-		
+		image(bottomleft, this.x + 0.5, this.y + cellW - 8 * scale - 0.5, 8 * scale, 8 * scale);
 	} else if (this.cornerType[3] == -1) {
-		fill(255);
-		//text('BL', this.x, this.y + cellW);
-		image(intbl, this.x + 0.5, this.y + cellW - 8 * ((cellW-1)/31) - 0.5, 8 * ((cellW-1)/31), 8 * ((cellW-1)/31));
-		
-		// noStroke();
-		// fill(255, 158, 19);
-		// rect(this.x + 0.5, this.y + cellW - 8 - 0.5, 8, 8);
-		// stroke(0);
-		
+		image(intbl, this.x + 0.5, this.y + cellW - 8 * scale - 0.5, 8 * scale, 8 * scale);
 	}
 }

@@ -53,6 +53,15 @@ canvas {
 	z-index: -1;
 }
 
+#bg {
+	display: inline-block;
+	position: absolute;
+	width: auto;
+	height: auto;
+	padding: 0;
+	margin: 0;
+}
+
 #header {
 	position: fixed;
 	width: 100%;

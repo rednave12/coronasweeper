@@ -41,7 +41,6 @@ let up, down, left, right;
 let topright, topleft, bottomright, bottomleft;
 let intbr, intbl, inttr, inttl;
 let font;
-let tester;
 
 var grid;
 var bar;
@@ -49,6 +48,8 @@ var bar;
 var clickCount = 0;
 var flags = 0;
 var minesFound = 0;
+
+//this actually needs to be global.
 var gameState = 0;
 
 var diff = 'beginner';
@@ -80,7 +81,6 @@ function preload() {
 	inttr = loadImage('assets/inttr.png');
 	inttl = loadImage('assets/inttl.png');
 	font = loadFont('assets/PressStart2P-Regular.ttf');
-	tester = loadImage('assets/test.png');
 }
 
 function newGame() {
@@ -128,12 +128,11 @@ function mousePressed() {
 						toDraw.push(grid[i][j]);
 					}
 					
-					
 					if(grid[i][j].mine) {
 						gameState = -1;
 					}
 
-				} else if (mouseButton == RIGHT && gameState != -1) {
+				} else if (mouseButton == RIGHT && gameState != -1 && !grid[i][j].revealed) {
 					if (grid[i][j].flagged) {
 						grid[i][j].flagged = false;
 						flags--;
@@ -182,6 +181,7 @@ function isInRange(i, j) {
 
 function gameOver() {
 	if (gameState != 0) {
+		stroke(0);
 		fill(200);
 		rectMode(CENTER);
 		rect(gameW/2, gameH/2-8, 400, topBarH);
@@ -201,6 +201,7 @@ function keyPressed() {
 		reset();
 		setup();
 		draw();
+		bgReset();
 	}
 }
 
@@ -221,8 +222,6 @@ function reset() {
 }
 
 function draw() {
-	//clear();
-	//background(255);
 	for (var i = 0; i < cols; i++) {
 		for (var j = 0; j < rows; j++) {
 			grid[i][j].show();
