@@ -187,6 +187,11 @@ font-family: "pressStart";
 src: url(assets/PressStart2P-Regular.ttf);
 }
 
+@font-face {
+font-family: "anonpro";
+src: url(assets/Anonymous_Pro/AnonymousPro-Italic.ttf);
+}
+
 p {
 	line-height: 20%;
 	padding-top: 15px;
@@ -195,4 +200,20 @@ p {
 
 .slider:disabled {
 	cursor: not-allowed;
+}
+
+#textBox {
+	position: absolute;
+	width: 20%;
+	height: 20%;
+	background-color: black;
+	left: 5%;
+	top: 20%;
+	color: white;
+	border-style: solid;
+	border-color: white;
+	text-align: left;
+	font-family: anonpro;
+	font-size: 14px;
+	padding: 1%;
 }

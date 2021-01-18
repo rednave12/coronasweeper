@@ -71,5 +71,4 @@ $(window).resize(function() {
 
 $( window ).on( "load", function() {
 	reset();
-    newGame();
 });

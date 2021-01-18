@@ -9,7 +9,7 @@
 //REDESIGN DRAWING FUNCTIONS!!!!!!!! ONLY DRAW REVEALED OR UPDATED SQUARES :)
 //REDESIGN EDGES AND CORNERS
 
-document.addEventListener('contextmenu', event => event.preventDefault());
+//document.addEventListener('contextmenu', event => event.preventDefault());
 p5.disableFriendlyErrors = true
 
 var cols = 10;
@@ -196,6 +196,16 @@ function gameOver() {
 		
 		if (gameState == -1) {
 			overlayGameOver();
+			stroke(0);
+			fill(200);
+			rectMode(CENTER);
+			rect(gameW/2, gameH/3, 250, topBarH*1.5);
+			rectMode(CORNER);
+			fill(251, 102, 46);
+			textSize(24);
+			textAlign(CENTER);
+			text('GAME OVER', gameW/2, gameH/2.75);
+			textSize(12);
 		}
 	}
 }
