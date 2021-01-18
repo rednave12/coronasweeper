@@ -1,10 +1,14 @@
 TO DO LIST:
 
-- add instruction tab to side of page
-- better labels for buttons / add label to slider - hover labels?
+####### WEB DESIGN & CSS ##########
 - stop nav bar from overlapping with logo when window is resized - could we add logo to flexbox?
-- FEWER GLOBALS.
 - get rid of scrollbar
 
-- FIX WINDOW RESIZE MESSING UP WHERE VIRUSES ATTRACT TO CANVAS ON LOSS
-- FIX WINDOW RESIZE MESSING UP OVERLAY SIZE
+
+####### WINDOW RESIZE EVENT HANDLER ########
+all done :)
+
+
+######### JAVASCRIPT #########
+- IMPLEMENT TEXTBOX FOR HELP, instructions, CONTINUATION MESSAGES ETC.
+- FEWER GLOBALS - refactor! clean up lol

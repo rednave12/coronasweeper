@@ -86,7 +86,6 @@ Particle.prototype.update = function() {
 			this.xv = -this.xv;
 		}
 		
-		
 		//loss
 		if (gameState == -1) {
 			
