@@ -1,7 +1,7 @@
 var c = document.getElementById("bg");
 var ctx = c.getContext("2d");
 
-var count = 20;
+var count = 30;
 
 var v = new Image;
 var a = new Image;
@@ -89,17 +89,25 @@ Particle.prototype.update = function() {
 		//loss
 		if (gameState == -1) {
 			
-			if (this.x > c.width/2) {
+			if (this.x > (c.width/2 + width/2)) {
 				this.xv = this.x - ((c.width/2) + width/2);
-			} else {
+			} else if (this.x < (c.width/2 - width/2)) {
 				this.xv = this.x - ((c.width/2) - (width/2) - 30);
+			} else if (this.y > (c.height/2 + height/2)) {
+				this.yv = this.y - ((c.height/2 + height/2));
+			} else if (this.y < (c.height/2 - height/2)) {
+				this.yv = this.y - ((c.height/2 - height/2) - 30);
 			}
 			
-			this.xv = -this.xv / 20;
+			this.xv = -this.xv / 40;
+			this.yv = -this.yv / 40;
 			
-			if (this.y + 20 >= c.height - 90 || this.y - 20 <= 50) {
-				this.yv = -this.yv;
-			}
+			// if (this.y + 20 >= c.height - 90 || this.y - 20 <= 50) {
+				// this.yv = -this.yv;
+			// }
+			// if (this.x + 20 >= c.width - 90 || this.x - 20 <= 50) {
+				// this.xv = -this.xv;
+			// }
 		}		
 		//POSITION UPDATED BY VELOCITY
 		this.x += this.xv;

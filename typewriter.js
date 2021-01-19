@@ -1,4 +1,4 @@
-var speed = 50;
+var speed = 25;
 var i = 0;
 
 let text0 = 'Welcome to CoronaSweeper: A Minesweeper clone with a contagious twist...';
