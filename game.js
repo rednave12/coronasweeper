@@ -99,6 +99,7 @@ function newGame() {
 	reset();
 	setup();
 	draw();
+	
 }
 
 function setup() {
@@ -237,6 +238,7 @@ function reset() {
 	bgReset();
 	
 	setupOverlay(canvW, canvH);
+	resizeTextBox(canvW);
 }
 
 function draw() {

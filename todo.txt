@@ -6,7 +6,8 @@ TO DO LIST:
 
 
 ####### WINDOW RESIZE EVENT HANDLER ########
-all done :)
+- make game canvas and buttons handle this better.
+- problems oftenarise when loading the page on a small window and then increasing window size.
 
 
 ######### JAVASCRIPT #########

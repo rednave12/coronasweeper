@@ -20,6 +20,21 @@ $(function() {
 	}
 })
 
+$(function() {
+	var w = $("#textBox").width();
+	
+    resizeTextBox = function(canvW) {
+		var windowW = $(window).innerWidth();
+		var availW = windowW / 2 - canvW / 2;
+		
+		$("#textBox").css({'width': 0.8 * availW});
+		
+		var newW = $("#textBox").width();
+		
+		$("#textBox").css({'left': 0.075 * availW });
+	}
+})
+
 
 $(function() {
 	var prevText;
@@ -65,8 +80,14 @@ $(window).resize(function() {
 		bgReset();
 		
 		//resize game canvas
+		//NOT WORKING
 		$("#myCanvas").css({'width': canvW });
 		$("#myCanvas").css({'height': canvH });
+		
+		//RESET BUTTON WIDTH
+		
+		//RESET TEXT BOX
+		resizeTextBox(canvW);
 });
 
 $( window ).on( "load", function() {
