@@ -85,6 +85,7 @@ $(window).resize(function() {
 		$("#myCanvas").css({'height': canvH });
 		
 		//RESET BUTTON WIDTH
+		$(".button").css({'width': 'fit-content'});
 		
 		//RESET TEXT BOX
 		resizeTextBox(canvW);

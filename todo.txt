@@ -6,10 +6,10 @@ TO DO LIST:
 
 
 ####### WINDOW RESIZE EVENT HANDLER ########
-- make game canvas and buttons handle this better.
-- problems oftenarise when loading the page on a small window and then increasing window size.
+- make game canvas handle this better.
+- problems often arise when loading the page on a small window and then increasing window size.
 
 
 ######### JAVASCRIPT #########
 - IMPLEMENT TEXTBOX FOR HELP, instructions, CONTINUATION MESSAGES ETC.
-- FEWER GLOBALS - refactor! clean up lol
+- FEWER GLOBALS - refactor! clean up lol. This will help with game canvas responsiveness.
