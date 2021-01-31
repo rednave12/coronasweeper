@@ -9,7 +9,7 @@
 //REDESIGN DRAWING FUNCTIONS!!!!!!!! ONLY DRAW REVEALED OR UPDATED SQUARES :)
 //REDESIGN EDGES AND CORNERS
 
-//document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('contextmenu', event => event.preventDefault());
 p5.disableFriendlyErrors = true
 
 var cols = 10;
